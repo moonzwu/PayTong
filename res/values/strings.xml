@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PayTong</string>
+    <string name="txt_bank">Bank:</string>
+    <string name="txt_repayment">Repayments:</string>
+    <string name="txt_payment_date">Payment Date:</string>
+	<string name="txt_btn_setting">setting</string>
+	<string name="txt_btn_remove">remove</string>
+</resources>
