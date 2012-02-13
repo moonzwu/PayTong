@@ -27,10 +27,7 @@ public class SMSReceiver extends BroadcastReceiver {
 				Log.v(tag, phoneNumber);
 				
 				String messageBody;
-				//messageBody = msgs[i].getMessageBody();
-				messageBody = "您尾号8436广发卡12月人民币账单金额647.69，" 
-					+ "最低还款100.00，还款到期01月12日。请留意电子账单，" 
-					+ "若已还勿理会【广发银行】";
+				messageBody = msgs[i].getMessageBody();
 				Log.v(tag, messageBody);
 				
 				SMSContentParser parser = new SMSContentParser();

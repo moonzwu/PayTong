@@ -22,13 +22,15 @@ public class SMSContentParser {
 
 	private SMSContent generateGdbBankSMSContent(String data) {
 		SMSContent content = new SMSContent();
-		Pattern p = Pattern.compile("您尾号(\\d{4})广发卡(\\d{2})月" +
+		Pattern p = Pattern.compile(
+				"您尾号(\\d{4})广发卡(\\d{2})月" +
 				"(人民币)账单金额(-?\\d+\\.\\d+)?，" +
-				"最低还款(-?\\d+\\.\\d+)?，" +
+				"最低还款(-?\\d+\\.\\d+)?，" + 
 				"还款到期(\\d{2})月(\\d{2})日。" +
-				"请留意电子账单，若已还勿理会【(\\W{4})】");
+				"请留意电子账单，若已还勿理会【([\\u4E00-\\u9FA5\\uF900-\\uFA2D]{4})】"
+				);
 		Matcher m = p.matcher(data);
-		if(m.matches()) {
+		if(m.find()) {
 			int count = m.groupCount();
 			content.setCardNumberTrail(m.group(1));
 			content.setBillingMonth(Integer.parseInt(m.group(2)));
@@ -47,9 +49,9 @@ public class SMSContentParser {
 	
 	private SMSContent generateCmbBankSMSContent(String data) {
 		SMSContent content = new SMSContent();
-		Pattern p = Pattern.compile("(\\W+)先生，您招行个人信用卡(\\d{2})月" +
+		Pattern p = Pattern.compile("(.*)先生，您招行个人信用卡(\\d{2})月" +
 				"账单金额(人民币)(-?\\d+\\,\\d+\\.\\d+)?，(美金)(-?\\d+\\.\\d+)?。" +
-				"到期还款日(\\d{2})月(\\d{2})日\\[(\\W{4})\\]");
+				"到期还款日(\\d{2})月(\\d{2})日\\[([\\u4E00-\\u9FA5\\uF900-\\uFA2D]{4})\\]");
 		Matcher m = p.matcher(data);
 		if(m.find()) {
 			int count = m.groupCount();
