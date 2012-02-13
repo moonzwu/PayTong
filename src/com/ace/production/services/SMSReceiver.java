@@ -1,4 +1,4 @@
-package com.ace.production.services;
+ï»¿package com.ace.production.services;
 
 import com.ace.production.text.SMSContent;
 import com.ace.production.text.SMSContentParser;
@@ -28,15 +28,15 @@ public class SMSReceiver extends BroadcastReceiver {
 				
 				String messageBody;
 				//messageBody = msgs[i].getMessageBody();
-				messageBody = "ÄúÎ²ºÅ8436¹ã·¢¿¨12ÔÂÈËÃñ±ÒÕËµ¥½ğ¶î647.69£¬" 
-					+ "×îµÍ»¹¿î100.00£¬»¹¿îµ½ÆÚ01ÔÂ12ÈÕ¡£ÇëÁôÒâµç×ÓÕËµ¥£¬" 
-					+ "ÈôÒÑ»¹ÎğÀí»á¡¾¹ã·¢ÒøĞĞ¡¿";
+				messageBody = "æ‚¨å°¾å·8436å¹¿å‘å¡12æœˆäººæ°‘å¸è´¦å•é‡‘é¢647.69ï¼Œ" 
+					+ "æœ€ä½è¿˜æ¬¾100.00ï¼Œè¿˜æ¬¾åˆ°æœŸ01æœˆ12æ—¥ã€‚è¯·ç•™æ„ç”µå­è´¦å•ï¼Œ" 
+					+ "è‹¥å·²è¿˜å‹¿ç†ä¼šã€å¹¿å‘é“¶è¡Œã€‘";
 				Log.v(tag, messageBody);
 				
 				SMSContentParser parser = new SMSContentParser();
 				SMSContent content = parser.parse(messageBody);
 				Log.v(tag, content.getBankName());
-				Log.v(tag, content.getPayMoney("ÈËÃñ±Ò").toString());
+				Log.v(tag, content.getPayMoney("äººæ°‘å¸").toString());
 			}
 		}
 	}

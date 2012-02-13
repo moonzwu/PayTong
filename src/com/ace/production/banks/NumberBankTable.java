@@ -1,4 +1,4 @@
-package com.ace.production.banks;
+锘縫ackage com.ace.production.banks;
 
 import java.util.HashMap;
 
@@ -11,8 +11,8 @@ public class NumberBankTable {
 	}
 	
 	private NumberBankTable() {
-		mapping.put("95588", "广发银行");
-		mapping.put("95566", "招商银行");
+		mapping.put("95588", "骞垮彂閾惰");
+		mapping.put("95566", "鎷涘晢閾惰");
 	}
 	
 	public String getBankNameByNumber(String number) {

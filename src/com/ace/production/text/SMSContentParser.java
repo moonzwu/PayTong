@@ -1,4 +1,4 @@
-package com.ace.production.text;
+ï»¿package com.ace.production.text;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,10 +10,10 @@ public class SMSContentParser {
 
 	public SMSContent parse(String data) {
 		SMSContent content = null;
-		if (data.contains("¹ã·¢ÒøĞĞ")) {
+		if (data.contains("å¹¿å‘é“¶è¡Œ")) {
 			content = generateGdbBankSMSContent(data);
 		}
-		if (data.contains("ÕĞÉÌÒøĞĞ")) {
+		if (data.contains("æ‹›å•†é“¶è¡Œ")) {
 			content = generateCmbBankSMSContent(data);
 		}
 		
@@ -22,11 +22,11 @@ public class SMSContentParser {
 
 	private SMSContent generateGdbBankSMSContent(String data) {
 		SMSContent content = new SMSContent();
-		Pattern p = Pattern.compile("ÄúÎ²ºÅ(\\d{4})¹ã·¢¿¨(\\d{2})ÔÂ" +
-				"(ÈËÃñ±Ò)ÕËµ¥½ğ¶î(-?\\d+\\.\\d+)?£¬" +
-				"×îµÍ»¹¿î(-?\\d+\\.\\d+)?£¬" +
-				"»¹¿îµ½ÆÚ(\\d{2})ÔÂ(\\d{2})ÈÕ¡£" +
-				"ÇëÁôÒâµç×ÓÕËµ¥£¬ÈôÒÑ»¹ÎğÀí»á¡¾(\\W{4})¡¿");
+		Pattern p = Pattern.compile("æ‚¨å°¾å·(\\d{4})å¹¿å‘å¡(\\d{2})æœˆ" +
+				"(äººæ°‘å¸)è´¦å•é‡‘é¢(-?\\d+\\.\\d+)?ï¼Œ" +
+				"æœ€ä½è¿˜æ¬¾(-?\\d+\\.\\d+)?ï¼Œ" +
+				"è¿˜æ¬¾åˆ°æœŸ(\\d{2})æœˆ(\\d{2})æ—¥ã€‚" +
+				"è¯·ç•™æ„ç”µå­è´¦å•ï¼Œè‹¥å·²è¿˜å‹¿ç†ä¼šã€(\\W{4})ã€‘");
 		Matcher m = p.matcher(data);
 		if(m.matches()) {
 			int count = m.groupCount();
@@ -47,9 +47,9 @@ public class SMSContentParser {
 	
 	private SMSContent generateCmbBankSMSContent(String data) {
 		SMSContent content = new SMSContent();
-		Pattern p = Pattern.compile("(\\W+)ÏÈÉú£¬ÄúÕĞĞĞ¸öÈËĞÅÓÃ¿¨(\\d{2})ÔÂ" +
-				"ÕËµ¥½ğ¶î(ÈËÃñ±Ò)(-?\\d+\\,\\d+\\.\\d+)?£¬(ÃÀ½ğ)(-?\\d+\\.\\d+)?¡£" +
-				"µ½ÆÚ»¹¿îÈÕ(\\d{2})ÔÂ(\\d{2})ÈÕ\\[(\\W{4})\\]");
+		Pattern p = Pattern.compile("(\\W+)å…ˆç”Ÿï¼Œæ‚¨æ‹›è¡Œä¸ªäººä¿¡ç”¨å¡(\\d{2})æœˆ" +
+				"è´¦å•é‡‘é¢(äººæ°‘å¸)(-?\\d+\\,\\d+\\.\\d+)?ï¼Œ(ç¾é‡‘)(-?\\d+\\.\\d+)?ã€‚" +
+				"åˆ°æœŸè¿˜æ¬¾æ—¥(\\d{2})æœˆ(\\d{2})æ—¥\\[(\\W{4})\\]");
 		Matcher m = p.matcher(data);
 		if(m.find()) {
 			int count = m.groupCount();
