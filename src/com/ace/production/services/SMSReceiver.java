@@ -1,5 +1,6 @@
 ﻿package com.ace.production.services;
 
+import android.os.Handler;
 import com.ace.production.text.SMSContent;
 import com.ace.production.text.SMSContentParser;
 
@@ -12,6 +13,11 @@ import android.util.Log;
 public class SMSReceiver extends BroadcastReceiver {
 	private String tag = this.getClass().getName();
 
+    public void setActivityHandler(Handler activityHandler) {
+        this.activityHandler = activityHandler;
+    }
+
+    public Handler activityHandler;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -32,8 +38,10 @@ public class SMSReceiver extends BroadcastReceiver {
 				
 				SMSContentParser parser = new SMSContentParser();
 				SMSContent content = parser.parse(messageBody);
-				Log.v(tag, content.getBankName());
-				Log.v(tag, content.getPayMoney("人民币").toString());
+				if (content != null) {
+					Log.v(tag, content.getBankName());
+					Log.v(tag, content.getPayMoney("人民币").toString());
+				}
 			}
 		}
 	}
