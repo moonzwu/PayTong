@@ -18,11 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".services.SMSReceiver">
-            <intent-filter android:priority="100">
-				<action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-        </receiver>
+
         <service android:name=".services.SmsWatcherService"></service>
     </application>
 

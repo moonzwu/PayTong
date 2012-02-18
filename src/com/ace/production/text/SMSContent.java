@@ -1,11 +1,13 @@
-﻿package com.ace.production.text;
+package com.ace.production.text;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class SMSContent {
+public class SMSContent implements Serializable{
 	private String cardNumberTrail;
 	private String bankName;
 	private int billingMonth;
@@ -13,7 +15,7 @@ public class SMSContent {
 	private Map<String, BigDecimal> payMoneyMap = new HashMap<String, BigDecimal>();
 	private float theLeastPayMoney;
 
-	public void setBankName(String bankName) {
+    public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
 	public String getBankName() {
@@ -31,6 +33,9 @@ public class SMSContent {
 	public BigDecimal getPayMoney(String currency) {
 		return this.payMoneyMap.get(currency);
 	}
+    public Set<String> getCurrencies() {
+        return this.payMoneyMap.keySet();
+    }
 	public void setTheLeastPayMoney(float theLeastPayMoney) {
 		this.theLeastPayMoney = theLeastPayMoney;
 	}
@@ -49,5 +54,5 @@ public class SMSContent {
 	public String getCardNumberTrail() {
 		return cardNumberTrail;
 	}
-	
 }
+

@@ -1,6 +1,9 @@
 ﻿package com.ace.production.services;
 
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.os.Parcelable;
 import com.ace.production.text.SMSContent;
 import com.ace.production.text.SMSContentParser;
 
@@ -9,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import java.math.BigDecimal;
 
 public class SMSReceiver extends BroadcastReceiver {
 	private String tag = this.getClass().getName();
@@ -37,10 +42,21 @@ public class SMSReceiver extends BroadcastReceiver {
 				Log.v(tag, messageBody);
 				
 				SMSContentParser parser = new SMSContentParser();
-				SMSContent content = parser.parse(messageBody);
-				if (content != null) {
+				//SMSContent content = parser.parse(messageBody);
+				SMSContent content = new SMSContent();
+                content.setBankName("招商银行");
+                content.setPayMoney("人民币", new BigDecimal(500.00));
+                if (content != null) {
 					Log.v(tag, content.getBankName());
 					Log.v(tag, content.getPayMoney("人民币").toString());
+                    
+                    if (activityHandler != null){
+                        Message msg = new Message();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(SMSContent.class.getSimpleName(),content);
+                        msg.setData(bundle);
+                        activityHandler.sendMessage(msg);
+                    }
 				}
 			}
 		}

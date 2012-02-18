@@ -1,4 +1,4 @@
-﻿package com.ace.production.text;
+package com.ace.production.text;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -1,6 +1,7 @@
 ﻿package com.ace.production;
 
 import android.app.Activity;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.ace.production.services.SMSReceiver;
 import com.ace.production.text.SMSContent;
+
+import java.util.Set;
 
 public class PayTongActivity extends Activity {
 
@@ -17,7 +20,19 @@ public class PayTongActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         receiver.setActivityHandler(mHandler);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(receiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
     SMSReceiver receiver = new SMSReceiver();
@@ -28,8 +43,10 @@ public class PayTongActivity extends Activity {
         public void handleMessage(Message msg) {
             EditText bank = (EditText) findViewById(R.id.edit_bank);
             EditText repayment = (EditText) findViewById(R.id.edit_repayment);
-            SMSContent smsContent = (SMSContent) msg.getData().get("SMSContent");
+            SMSContent smsContent = (SMSContent) msg.getData().get(SMSContent.class.getSimpleName());
             bank.setText(smsContent.getBankName());
+
+            Set<String> currenciesSet = smsContent.getCurrencies();
             repayment.setText(smsContent.getPayMoney("人民币").toString());
         }
     };

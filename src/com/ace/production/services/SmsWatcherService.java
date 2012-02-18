@@ -1,4 +1,4 @@
-﻿package com.ace.production.services;
+package com.ace.production.services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
