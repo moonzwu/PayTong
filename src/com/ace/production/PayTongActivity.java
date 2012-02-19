@@ -47,7 +47,11 @@ public class PayTongActivity extends Activity {
             bank.setText(smsContent.getBankName());
 
             Set<String> currenciesSet = smsContent.getCurrencies();
-            repayment.setText(smsContent.getPayMoney("人民币").toString());
+            String repaymentText = "";
+            for (String currency : currenciesSet) {
+                repaymentText += currency + ":" + smsContent.getPayMoney(currency).toString() + ",";
+            }
+            repayment.setText(repaymentText.substring(0, repaymentText.length()-1));
         }
     };
 

@@ -45,7 +45,8 @@ public class SMSReceiver extends BroadcastReceiver {
 				//SMSContent content = parser.parse(messageBody);
 				SMSContent content = new SMSContent();
                 content.setBankName("招商银行");
-                content.setPayMoney("人民币", new BigDecimal(500.00));
+                content.setPayMoney("人民币", new BigDecimal(500.00).setScale(2,BigDecimal.ROUND_HALF_UP));
+                content.setPayMoney("美金", new BigDecimal(54.8).setScale(2,BigDecimal.ROUND_HALF_UP));
                 if (content != null) {
 					Log.v(tag, content.getBankName());
 					Log.v(tag, content.getPayMoney("人民币").toString());
